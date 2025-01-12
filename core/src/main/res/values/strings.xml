@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="back_button">back button</string>
+    <string name="register">Register</string>
+    <string name="gambar_acara">gambar acara</string>
+    <string name="title">title</string>
+    <string name="published_date">Published date</string>
+    <string name="save_bookmark">save bookmark</string>
+</resources>

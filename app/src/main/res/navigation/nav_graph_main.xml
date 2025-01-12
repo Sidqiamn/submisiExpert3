@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:startDestination="@id/mainActivity">
+
+    <activity
+        android:id="@+id/mainActivity"
+        android:name="com.example.submisiawal2.activity.MainActivity"
+        android:label="Main Activity">
+        <action
+            android:id="@+id/action_to_detailActivity"
+            app:destination="@id/detailActivity" />
+    </activity>
+
+    <activity
+        android:id="@+id/detailActivity"
+        android:name="com.example.shared.presentation.DetailEventActivity"
+        android:label="Detail Activity">
+        <argument
+            android:name="itemId"
+            app:argType="string"
+            app:nullable="true" />
+    </activity>
+    <activity
+        android:id="@+id/settingsActivity"
+        android:name="com.example.shared.presentation.DetailEventActivity"
+        android:label="Settings Activity">
+
+    </activity>
+    <activity
+        android:id="@+id/favoriteActivity"
+        android:name="com.example.shared.presentation.DetailEventActivity"
+        android:label="Settings Activity">
+
+    </activity>
+</navigation>
