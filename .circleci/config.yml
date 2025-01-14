@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   android: circleci/android@2.5.0
+
 jobs:
   build:
     executor:
@@ -13,7 +14,7 @@ jobs:
       - restore_cache:
           key: android-orb-v1-
       - android/change-java-version:
-            java-version: 17
+          java-version: 17
       - run:
           name: Chmod permissions
           command: sudo chmod +x ./gradlew
@@ -25,6 +26,9 @@ jobs:
           paths:
             - ~/.android/build-cache
             - ~/.android/cache
+      - run:
+          name: Run Ktlint
+          command: ./gradlew ktlintCheck
       - run:
           name: Run Build
           command: ./gradlew build
