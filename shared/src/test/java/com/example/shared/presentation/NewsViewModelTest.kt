@@ -95,7 +95,7 @@ class NewsViewModelTest {
 
         viewModel.bookmarkedNews.test {
             assertEquals(emptyList<News>(), awaitItem())
-            viewModel.fetchBookmarkedNews()             
+            viewModel.fetchBookmarkedNews()
             assertEquals(mockBookmarkedNews, awaitItem())
             cancelAndConsumeRemainingEvents()
         }

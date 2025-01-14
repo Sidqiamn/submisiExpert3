@@ -18,11 +18,9 @@ class SettingsActivity : AppCompatActivity() {
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         val currentMode = AppCompatDelegate.getDefaultNightMode()
 
         binding.switchTheme.isChecked = currentMode == AppCompatDelegate.MODE_NIGHT_YES
-
 
         updateBackIcon(currentMode)
 
@@ -38,12 +36,10 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
 
-
         binding.backIcon.setOnClickListener {
             finish()
         }
     }
-
 
     private fun updateBackIcon(mode: Int) {
         val drawableRes = if (mode == AppCompatDelegate.MODE_NIGHT_YES) {

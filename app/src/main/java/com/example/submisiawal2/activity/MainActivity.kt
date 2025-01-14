@@ -55,7 +55,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-
         binding.rvHome.apply {
             layoutManager = LinearLayoutManager(this@MainActivity)
             setHasFixedSize(true)
@@ -74,7 +73,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SettingsActivity::class.java)
             startActivity(intent)
         }
-
     }
 
     private fun installChatModule() {
