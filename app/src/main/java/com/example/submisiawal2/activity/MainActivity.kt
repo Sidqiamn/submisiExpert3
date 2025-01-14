@@ -5,26 +5,31 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.core.domain.Result
 import com.example.core.domain.model.News
+import com.example.shared.presentation.NewsAdapter
+import com.example.shared.presentation.NewsViewModel
 import com.example.submisiawal2.databinding.ActivityMainBinding
 import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
 import com.google.android.play.core.splitinstall.SplitInstallRequest
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: com.example.shared.presentation.NewsViewModel by inject()
+    private val viewModel: NewsViewModel by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        val newsAdapter = com.example.shared.presentation.NewsAdapter { news: News ->
+        val newsAdapter = NewsAdapter { news: News ->
             if (news.isBookmarked) {
                 viewModel.deleteNews(news)
             } else {
@@ -32,24 +37,28 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        lifecycleScope.launchWhenStarted {
-            viewModel.headlineNews.collect { result ->
-                when (result) {
-                    is Result.Loading -> {
-                        binding.progressBar.visibility = View.VISIBLE
-                    }
-                    is Result.Success -> {
-                        binding.progressBar.visibility = View.GONE
-                        val newsData = result.data
-                        newsAdapter.submitList(newsData)
-                    }
-                    is Result.Error -> {
-                        binding.progressBar.visibility = View.GONE
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Terjadi kesalahan: ${result.error}",
-                            Toast.LENGTH_SHORT
-                        ).show()
+        lifecycleScope.launch {
+            lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.headlineNews.collect { result ->
+                    when (result) {
+                        is Result.Loading -> {
+                            binding.progressBar.visibility = View.VISIBLE
+                        }
+
+                        is Result.Success -> {
+                            binding.progressBar.visibility = View.GONE
+                            val newsData = result.data
+                            newsAdapter.submitList(newsData)
+                        }
+
+                        is Result.Error -> {
+                            binding.progressBar.visibility = View.GONE
+                            Toast.makeText(
+                                this@MainActivity,
+                                "Terjadi kesalahan: ${result.error}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
                 }
             }

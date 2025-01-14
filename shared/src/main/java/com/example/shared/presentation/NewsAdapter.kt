@@ -13,7 +13,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import com.example.core.R
-import com.example.core.databinding.ItemNewsBinding
+import com.example.shared.databinding.ItemNewsBinding
 import com.example.core.domain.model.News
 
 class NewsAdapter(private val onBookmarkClick: (News) -> Unit) : ListAdapter<News, NewsAdapter.MyViewHolder>(
@@ -30,21 +30,13 @@ class NewsAdapter(private val onBookmarkClick: (News) -> Unit) : ListAdapter<New
         Log.d("item at position adapter fav", "Item at $position: $news")
         holder.bind(news)
         val ivBookmark = holder.binding.ivBookmark
-        if (news.isBookmarked) {
-            ivBookmark.setImageDrawable(
-                ContextCompat.getDrawable(
-                    ivBookmark.context,
-                    R.drawable.ic_bookmarked_white
-                )
+        ivBookmark.setImageDrawable(
+            ContextCompat.getDrawable(
+                ivBookmark.context,
+                if (news.isBookmarked) R.drawable.ic_bookmarked_white
+                else R.drawable.ic_bookmark_white
             )
-        } else {
-            ivBookmark.setImageDrawable(
-                ContextCompat.getDrawable(
-                    ivBookmark.context,
-                    R.drawable.ic_bookmark_white
-                )
-            )
-        }
+        )
         ivBookmark.setOnClickListener {
 
             onBookmarkClick(news)

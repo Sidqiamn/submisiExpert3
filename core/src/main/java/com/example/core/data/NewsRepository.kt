@@ -12,7 +12,7 @@ import kotlinx.coroutines.flow.*
 class NewsRepository private constructor(
     private val apiService: ApiService,
     private val newsDao: NewsDao,
-    private val appExecutors: AppExecutors
+
 ) : INewsRepository {
 
     override fun getHeadlineNews(): Flow<Result<List<News>>> = flow {
@@ -70,10 +70,10 @@ class NewsRepository private constructor(
         fun getInstance(
             apiService: ApiService,
             newsDao: NewsDao,
-            appExecutors: AppExecutors
+
         ): NewsRepository =
             instance ?: synchronized(this) {
-                instance ?: NewsRepository(apiService, newsDao, appExecutors)
+                instance ?: NewsRepository(apiService, newsDao )
             }.also { instance = it }
     }
 }

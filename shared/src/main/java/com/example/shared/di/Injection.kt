@@ -1,6 +1,5 @@
 package com.example.shared.di
 
-import com.example.core.data.AppExecutors
 import com.example.core.data.NewsRepository
 import com.example.core.data.NewsDatabase
 import com.example.core.data.service.ApiConfig
@@ -15,12 +14,12 @@ import org.koin.dsl.module
 val appModule = module {
 
     single { ApiConfig.getApiService() }
-    single { AppExecutors() }
+
 
     single { NewsDatabase.getInstance(get()) }
     single { get<NewsDatabase>().newsDao() }
 
-    single { NewsRepository.getInstance(get(), get(), get()) as INewsRepository }
+    single { NewsRepository.getInstance(get(), get()) as INewsRepository }
 
 
     single { NewsInteractor(get()) as NewsUseCase }

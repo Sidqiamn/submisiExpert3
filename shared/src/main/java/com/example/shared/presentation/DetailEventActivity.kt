@@ -1,4 +1,3 @@
-
 package com.example.shared.presentation
 
 import android.annotation.SuppressLint
@@ -10,7 +9,6 @@ import android.text.Html
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-
 import com.bumptech.glide.Glide
 import com.example.core.domain.model.News
 import com.example.shared.R
@@ -48,10 +46,10 @@ class DetailEventActivity : AppCompatActivity() {
                 .load(news.imageLogo)
                 .into(binding.imgItemPhoto)
 
-            binding.tvPenyelenggara.text = "Penyelenggara: ${news.ownerName}"
-            binding.tvWaktu.text = "Waktu: ${news.beginTime}"
-            binding.tvQuota.text = "Kuota: ${news.quota}"
-            binding.tvLink.text = "Link: ${news.link}"
+            binding.tvPenyelenggara.text = getString(R.string.organizer_label, news.ownerName)
+            binding.tvWaktu.text = getString(R.string.time_label, news.beginTime)
+            binding.tvQuota.text = getString(R.string.quota_label, news.quota)
+            binding.tvLink.text = getString(R.string.link_label, news.link)
 
             binding.tvDeskripsi.text = Html.fromHtml(news.description, Html.FROM_HTML_MODE_LEGACY)
 

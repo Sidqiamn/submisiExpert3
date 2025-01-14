@@ -32,9 +32,6 @@ class NewsEntity(
     @field:ColumnInfo(name = "deskripsi")
     val desckripsi : String,
 
-    @field:ColumnInfo(name = "registrasi")
-    val registrasi : Int,
-
     @field:ColumnInfo(name = "publishedAt")
     val publishedAt: String,
 

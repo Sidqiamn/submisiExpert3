@@ -1,5 +1,7 @@
 package com.example.core.data.service
 
+
+import com.example.core.BuildConfig
 import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -10,9 +12,12 @@ class ApiConfig {
     companion object {
         fun getApiService(): ApiService {
 
-            val loggingInterceptor = HttpLoggingInterceptor().apply {
-                level = HttpLoggingInterceptor.Level.BODY
-            }
+            val loggingInterceptor = HttpLoggingInterceptor().setLevel(
+                if (BuildConfig.DEBUG)
+                    HttpLoggingInterceptor.Level.BODY
+                else
+                    HttpLoggingInterceptor.Level.NONE
+            )
 
             val hostname = "event-api.dicoding.dev"
 
@@ -28,14 +33,15 @@ class ApiConfig {
                 .certificatePinner(certificatePinner)
                 .build()
 
-
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://event-api.dicoding.dev/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
 
             return retrofit.create(ApiService::class.java)
         }
+
+        private const val BASE_URL = BuildConfig.BASE_URL
     }
 }

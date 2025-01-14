@@ -1,0 +1,6 @@
+<resources>
+    <string name="organizer_label">Penyelenggara: %1$s</string>
+    <string name="time_label">Waktu: %1$s</string>
+    <string name="quota_label">Kuota: %1$d</string>
+    <string name="link_label">Link: %1$s</string>
+</resources>

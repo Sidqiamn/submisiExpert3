@@ -12,6 +12,7 @@ android {
 
     defaultConfig {
         minSdk = 24
+        buildConfigField("String", "BASE_URL", "\"https://event-api.dicoding.dev/\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -35,6 +36,7 @@ android {
     }
     buildFeatures {
         viewBinding = true
+        buildConfig = true
     }
 }
 kotlin {

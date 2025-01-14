@@ -23,6 +23,4 @@ interface NewsDao {
     @Query("DELETE FROM news WHERE bookmarked = 0")
     suspend fun deleteAll()
 
-    @Query("SELECT EXISTS(SELECT * FROM news WHERE title = :title AND bookmarked = 1)")
-    suspend fun isNewsBookmarked(title: String): Boolean
 }

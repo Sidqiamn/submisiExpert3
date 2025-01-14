@@ -17,7 +17,6 @@ object DataMapper {
                 waktu = it.beginTime,
                 quota = it.quota,
                 link = it.link,
-                registrasi = it.registrants,
                 urlToImage = it.imageLogo,
                 publishedAt = it.beginTime,
                 isBookmarked = false
@@ -54,7 +53,6 @@ object DataMapper {
         quota = input.quota,
         link = input.link,
         desckripsi = input.description,
-        registrasi = input.quota,
         publishedAt = input.beginTime,
         urlToImage = input.imageLogo,
         url = input.link,
