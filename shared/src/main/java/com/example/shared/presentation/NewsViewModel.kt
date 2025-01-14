@@ -23,7 +23,7 @@ class NewsViewModel(
         fetchBookmarkedNews()
     }
 
-    private fun fetchHeadlineNews() {
+    fun fetchHeadlineNews() {
         viewModelScope.launch {
             newsUseCase.getHeadlineNews()
                 .catch { e -> _headlineNews.value = Result.Error(e.toString()) }
@@ -31,7 +31,7 @@ class NewsViewModel(
         }
     }
 
-    private fun fetchBookmarkedNews() {
+    fun fetchBookmarkedNews() {
         viewModelScope.launch {
             newsUseCase.getBookmarkedNews()
                 .catch { _ -> _bookmarkedNews.value = emptyList() }

@@ -44,22 +44,19 @@ kotlin {
 }
 dependencies {
     implementation(project(":core"))
-    implementation("com.google.android.play:asset-delivery:2.2.2")
+    implementation(libs.asset.delivery)
 
-    // For Kotlin users also import the Kotlin extensions library for Play Asset Delivery:
-    implementation("com.google.android.play:asset-delivery-ktx:2.2.2")
-    implementation("com.google.android.play:feature-delivery:2.1.0")
+    implementation(libs.asset.delivery.ktx)
+    implementation(libs.feature.delivery)
 
-    // For Kotlin users, also import the Kotlin extensions library for Play Feature Delivery:
-    implementation("com.google.android.play:feature-delivery-ktx:2.1.0")
-    implementation("com.google.android.play:review:2.0.2")
+    implementation(libs.feature.delivery.ktx)
 
-    // For Kotlin users, also import the Kotlin extensions library for Play In-App Review:
-    implementation("com.google.android.play:review-ktx:2.0.2")
-    implementation("com.google.android.play:app-update:2.1.0")
+    implementation(libs.app.update)
 
-    // For Kotlin users, also import the Kotlin extensions library for Play In-App Update:
-    implementation("com.google.android.play:app-update-ktx:2.1.0")
+    implementation(libs.app.update.ktx)
+    testImplementation(libs.junit.junit)
+    testImplementation(libs.junit.junit)
+    debugImplementation(libs.leakcanary.android)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)
@@ -68,6 +65,12 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     implementation(libs.androidx.recyclerview)
+
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
+    testImplementation(libs.junit)
+
 
     implementation(libs.glide)
     implementation(libs.retrofit)

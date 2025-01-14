@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.dynamic.feature) // Jika menggunakan fitur dinamis
+    alias(libs.plugins.android.dynamic.feature)
     alias(libs.plugins.kotlin.android)
 }
 
@@ -42,22 +42,17 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":shared"))
     implementation(project(":app"))
-    implementation("com.google.android.play:asset-delivery:2.2.2")
+    implementation(libs.asset.delivery)
 
-    // For Kotlin users also import the Kotlin extensions library for Play Asset Delivery:
-    implementation("com.google.android.play:asset-delivery-ktx:2.2.2")
-    implementation("com.google.android.play:feature-delivery:2.1.0")
+    implementation(libs.asset.delivery.ktx)
+    implementation(libs.feature.delivery)
 
-    // For Kotlin users, also import the Kotlin extensions library for Play Feature Delivery:
-    implementation("com.google.android.play:feature-delivery-ktx:2.1.0")
-    implementation("com.google.android.play:review:2.0.2")
+    implementation(libs.feature.delivery.ktx)
 
-    // For Kotlin users, also import the Kotlin extensions library for Play In-App Review:
-    implementation("com.google.android.play:review-ktx:2.0.2")
-    implementation("com.google.android.play:app-update:2.1.0")
+    implementation(libs.app.update)
 
-    // For Kotlin users, also import the Kotlin extensions library for Play In-App Update:
-    implementation("com.google.android.play:app-update-ktx:2.1.0")
+    implementation(libs.app.update.ktx)
+    debugImplementation(libs.leakcanary.android)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
     implementation(libs.androidx.activity)

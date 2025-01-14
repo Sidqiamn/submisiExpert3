@@ -1,6 +1,7 @@
 
 package com.example.shared.presentation
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -21,6 +22,7 @@ class DetailEventActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailEventBinding
     private val detailEventViewModel: DetailEventViewModel by viewModel()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()

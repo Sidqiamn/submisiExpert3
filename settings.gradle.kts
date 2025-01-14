@@ -1,4 +1,4 @@
-@file:Suppress("UnstableApiUsage", "UnstableApiUsage", "UnstableApiUsage")
+@file:Suppress("UnstableApiUsage")
 
 include(":shared")
 

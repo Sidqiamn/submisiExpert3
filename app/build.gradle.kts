@@ -22,11 +22,15 @@ android {
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+        }
+        debug {
+            isMinifyEnabled = false
+            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
     compileOptions {
@@ -49,24 +53,19 @@ kotlin {
 dependencies {
     implementation(project(":core"))
     implementation(project(":shared"))
-    implementation("com.google.android.play:asset-delivery:2.2.2")
+    implementation(libs.asset.delivery)
 
-    // For Kotlin users also import the Kotlin extensions library for Play Asset Delivery:
-    implementation("com.google.android.play:asset-delivery-ktx:2.2.2")
-    implementation("com.google.android.play:feature-delivery:2.1.0")
+    implementation(libs.asset.delivery.ktx)
+    implementation(libs.feature.delivery)
 
-    // For Kotlin users, also import the Kotlin extensions library for Play Feature Delivery:
-    implementation("com.google.android.play:feature-delivery-ktx:2.1.0")
-    implementation("com.google.android.play:review:2.0.2")
+    implementation(libs.feature.delivery.ktx)
 
-    // For Kotlin users, also import the Kotlin extensions library for Play In-App Review:
-    implementation("com.google.android.play:review-ktx:2.0.2")
-    implementation("com.google.android.play:app-update:2.1.0")
 
-    // For Kotlin users, also import the Kotlin extensions library for Play In-App Update:
-    implementation("com.google.android.play:app-update-ktx:2.1.0")
+    implementation(libs.app.update)
+
+    implementation(libs.app.update.ktx)
     implementation(libs.koin.android)
-
+    debugImplementation(libs.leakcanary.android)
     implementation(libs.koin.core)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
@@ -93,7 +92,7 @@ dependencies {
     implementation(libs.androidx.work.runtime)
     implementation(libs.android.async.http)
 
-    implementation("androidx.navigation:navigation-fragment-ktx:2.8.5")
-    implementation("androidx.navigation:navigation-ui-ktx:2.8.5")
-    implementation("androidx.navigation:navigation-runtime-ktx:2.8.5")
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+    implementation(libs.androidx.navigation.runtime.ktx)
 }
